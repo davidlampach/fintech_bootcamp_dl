@@ -1,4 +1,3 @@
-# coding: utf-8
 import csv
 from pathlib import Path
 
@@ -18,7 +17,7 @@ loan_costs = [500, 600, 200, 1000, 450]
 # @TODO: Use the `len` function to calculate the total number of loans in the list.
 # Print the number of loans from the list
 
-loans_count = len(loan_costs)
+loans_count = len(loan_costs) #Count items in loan list
 print(f"There are currently {loans_count} loans in the loan_costs list.")
 
 
@@ -27,7 +26,7 @@ print(f"There are currently {loans_count} loans in the loan_costs list.")
 # Print the total value of the loans
 
 
-loans_sum = sum(loan_costs)
+loans_sum = sum(loan_costs) #Sum items in loan list
 print(f"The sum of the loans in the loan_costs list is {loans_sum}")
 
 # What is the average loan amount from the list?
@@ -35,7 +34,7 @@ print(f"The sum of the loans in the loan_costs list is {loans_sum}")
 # Print the average loan amount
 # YOUR CODE HERE!
 
-loans_average = (loans_sum / loans_count)
+loans_average = (loans_sum / loans_count) #Average items in loan list
 print(f"The average loan price in the loan_costs list is {loans_average}")
 
 """Part 2: Analyze Loan Data.
@@ -73,9 +72,11 @@ loan = {
 # @TODO: Use get() on the dictionary of additional information to extract the Future Value and Remaining Months on the loan.
 # Print each variable.
 
+#Use get() method to extract remaining months from loan list
 remaining_months = loan.get('remaining_months')
 print(f"There are {remaining_months} remaining months in the loan.")
 
+#Use get() method to extract future value from loan list.
 future_value= loan.get('future_value')
 print(f"The future value of the loan is {future_value}")
 
@@ -86,8 +87,8 @@ print(f"The future value of the loan is {future_value}")
 #   HINT: Present Value = Future Value / (1 + Discount_Rate/12) ** remaining_months
 
 
-annual_discount_rate = .2
-present_value = round((future_value / (1+annual_discount_rate/12) ** remaining_months),2)
+annual_discount_rate = .2 #set annual discount rate
+present_value = round((future_value / (1+annual_discount_rate/12) ** remaining_months),2) #calculate present value
 print(f"The fair value of the loan is {present_value}")
 
 # If Present Value represents what the loan is really worth, does it make sense to buy the loan at its cost?
@@ -95,9 +96,9 @@ print(f"The fair value of the loan is {present_value}")
 #    If the present value of the loan is greater than or equal to the cost, then print a message that says the loan is worth at least the cost to buy it.
 #    Else, the present value of the loan is less than the loan cost, then print a message that says that the loan is too expensive and not worth the price.
 
-loan_price = loan.get('loan_price')
+loan_price = loan.get('loan_price') #get loan price
 
-if present_value >= loan_price:
+if present_value >= loan_price: #evaluate whether loan price is more or less than present value.
 
     print('the loan is worth at least the cost to buy it.')
 
@@ -132,7 +133,7 @@ new_loan = {
 #    The function should return the `present_value` for the loan.
 
 
-def calculate_present_value(future_value, remaining_months, annual_discount_rate = .2):
+def calculate_present_value(future_value, remaining_months, annual_discount_rate = .2): #discount rate set at 20% default
 
     present_value = round((future_value / (1+annual_discount_rate/12) ** remaining_months),2)
     return present_value
@@ -190,7 +191,7 @@ loans = [
 
 inexpensive_loans = []
 
-# @TODO: Loop through all the loans and append any that cost $500 or less to the `inexpensive_loans` list
+# Loop through all the loans and append any that cost $500 or less to the `inexpensive_loans` list
 
 for loan in loans:
 
@@ -226,13 +227,17 @@ Output this list of inexpensive loans to a csv file
 """
 
 # Set the output header
+
 header = ["loan_price", "remaining_months", "repayment_interval", "future_value"]
 
 # Set the output file path
+
 output_path = Path("inexpensive_loans.csv")
 
 # @TODO: Use the csv library and `csv.writer` to write the header row
 # and each row of `loan.values()` from the `inexpensive_loans` list.
+
+
 with open(output_path, 'w', encoding='UTF8') as loan_output:
     writer = csv.writer(loan_output)
 
